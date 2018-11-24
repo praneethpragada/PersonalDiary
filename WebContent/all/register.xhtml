@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="anonymous.xhtml"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="title">Registration</ui:define>
+
+    <ui:define name="content">
+        <script type="text/javascript">
+            function validate() {
+                var pwd1 = $("#password").val();
+                var pwd2 = $("#confirmPassword").val();
+                if ( pwd1 != pwd2) {
+                    alert("Sorry! Passwords do not match!");
+                    $("#confirmPassword").focus();
+                    return false;
+                }
+                return true;
+            }
+        </script>
+        <fieldset  title="User Details">
+            
+            <h:form prependId="false" onsubmit="return validate()">
+                Username 
+                <br/>
+                <h:inputText  id="uname" value="#{user.uname}" 
+                              p:required="required" p:placeholder="Username" />
+
+                <p/>
+                Password 
+                <br/>
+                <h:inputSecret  id="password" value="#{user.password}"  
+                                p:placeholder="Password"  p:required="required"  />
+                <p/>
+                Confirm Password 
+                <br/>
+                <h:inputSecret  id="confirmPassword" p:placeholder="Confirm Password"  
+                                p:required="required"  />
+                <p/>
+                Fullname
+                <br/>
+                <h:inputText  id="fullname" value="#{user.fullname}"
+                              p:placeholder="Fullname"  
+                              p:required="required"  />
+                <p/>
+                Email Address 
+                <br/>
+                <h:inputText  id="email" value="#{user.email}" 
+                              p:required="required"
+                              p:placeholder="Email Address"  
+                              p:type="email" />
+                <p/>
+                Mobile Number
+                <br/>
+                <h:inputText  id="mobile" value="#{user.mobile}"
+                              p:pattern="^\d{10}$"  
+                              p:placeholder="10 digit mobile number"  
+                              maxlength="10" />
+                <p/>
+                <h:commandButton  value="Register" action="#{user.register}" />
+                <p/>
+                <a href="login.xhtml">Go Back To Login</a>
+                <p/>
+                <h:outputText value="#{user.message}" />
+            </h:form>
+        </fieldset>
+    </ui:define>
+
+</ui:composition>

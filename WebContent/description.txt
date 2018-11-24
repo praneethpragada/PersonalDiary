@@ -1,0 +1,112 @@
+Registration
+============
+
+all/register.xhtml  (anonymous.xhtml)
+User.java 
+   register()
+UserDAO.java
+   boolean register(User)
+   
+Recover Password
+================
+all/recoverpassword.xhtml (anonymous.xhtml)
+User.java
+  recoverPassword() 
+  Send Mail using JavaMail API
+UserDAO.java
+   User getUser(uname, email);  
+   
+Login
+=====
+all/login.xhtml (anonymous.xhtml)
+User.java
+  login()
+  Util.addToSession() Keys are -> uname, fullname
+UserDAO.java
+ User login(uname,password);  
+ 
+home (Add Entry)
+===============
+home.xhtml  (master.xhtml)
+Entry.java
+  Entry() -> get system date and time  into date and time properties 
+  add()
+EntryDAO.java
+  boolean add(Entry)
+
+Logout
+========
+User.java
+   logout()
+   Util.terminateSession()
+   
+Change Password
+===============
+changepassword.xhtml
+User.java
+   changePassword()
+UserDAO.java
+   boolean changePassword(uname,password,newpassword)   
+
+Recent Entries
+==============
+recententries.xhtml 
+   h:dataTable 
+Entry.java
+   List<Entry> getRecentEntries()
+EntryDAO.java
+   List<Entry> getRecentEntries(uname)
+
+
+Delete Entry
+============
+recententries.xhtml or search.xhtml (<f:param name="id"... />)
+Entry.java
+  delete()  
+    Util.getParameter("id")
+EntryDAO.java
+   delete(entryid)
+  
+
+Edit Entry
+===========
+editentry.xhtml (parameter id)
+Entry.java
+   load()
+   update()
+EntryDAO.java
+    Entry getEntry(id)
+    boolean update(Entry)
+
+
+
+Search Entries
+===============
+search.xhtml ( dataTable)
+SearchBean.java
+    search()
+EntryDAO.java
+    List<Entry> searchEntries( uname,fromDate,toDate,text);
+
+
+Security
+========
+AuthFilter.java
+
+
+
+
+
+
+
+
+
+   
+   
+
+ 
+
+
+   
+   
+ 

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="master.xhtml"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="title">
+        Add Entry
+    </ui:define>
+
+    <ui:define name="content">
+
+        <fieldset  title="Entry Details" >
+            <LEGEND><b>Entry Details</b></LEGEND>
+            <h:form>
+                Date 
+                <br/>
+                <h:inputText  id="entryDate"  value="#{entry.date}" 
+                              p:required="required"
+                              p:type="date"  />
+                <p/>     
+                Time 
+                <br/>
+                <h:inputText  id="entryTime" value="#{entry.time}"
+                              p:type="time" p:step="60" />
+                <p/>
+                Text
+                <br/>
+                <h:inputTextarea  id="entryText" value="#{entry.text}" 
+                                   p:required="required" rows="5" 
+                                   cols="80"              /> 
+                <p/>
+                <h:commandButton  value="Add Entry" 
+                                  actionListener="#{entry.add}" />
+                <p/>
+                <h:outputText value="#{entry.message}" />
+            </h:form>
+        </fieldset>
+    </ui:define>
+
+</ui:composition>

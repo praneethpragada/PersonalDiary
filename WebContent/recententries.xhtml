@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./master.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="title">
+        Recent Entries
+    </ui:define>
+
+    <ui:define name="content">
+        <h:outputText rendered="#{entry.recentEntries.size() == 0}" 
+                      style="font:16pt arial bold;color:red"
+                      value="No entires found!"/>
+             
+
+        <h:dataTable rendered="#{entry.recentEntries.size()> 0}" 
+                     value="#{entry.recentEntries}" 
+                     var="entry" border="1" width="100%">
+            <h:column>
+                <f:facet name="header"> Date </f:facet>
+                    #{entry.date}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header"> Time </f:facet>
+                    #{entry.time}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header"> Text </f:facet>
+                    #{entry.previewText}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header"> Actions </f:facet>
+                [<a href="editentry.xhtml?id=#{entry.id}">Edit</a>]
+                [<h:commandLink actionListener="#{entry.delete}" 
+                       onclick="return confirm('Do you want to delete this entry??')"
+                       value="Delete">
+                    <f:param  name="id" value="#{entry.id}" />
+                </h:commandLink>]
+             </h:column>
+        </h:dataTable>
+    </ui:define>
+</ui:composition>
